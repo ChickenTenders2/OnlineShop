@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="sneaker-details">
+        <img src="{{ url_for('static', filename= sneaker.imageTag) }}" class="image" width="30%" height="30%"/><br>
+        <h1>{{ sneaker.name }}</h1>
+        <p>Price: {{ sneaker.price }}</p>
+        <p>{{ sneaker.description }}</p>
+
+        <form method="POST" action="{{ url_for('home')}}">
+            {{ form.hidden_tag() }}
+            {{ form.sneakerID(value= sneaker.id) }}
+            {{ form.quantity.label }} {{ form.quantity() }}
+            {{ form.submit() }}
+        </form>
+    </div> <br>
+
+    <div class="stats-container">
+        <div class="stat-box grey-box">
+            <h3 class="stat-subheading">Fit</h3>
+            <p class="stat-text">All shoes fit true to size.</p>
+        </div>
+        <div class="stat-box grey-box">
+            <h3 class="stat-subheading">Environmental Impact</h3>
+            <p class="stat-text">There are no environmental impacts.</p>
+        </div>
+        <div class="stat-box grey-box">
+            <h3 class="stat-subheading">Fast Deliveries</h3>
+            <p class="stat-text">StockZ guarantees a fast delivering service, your item arrives to you within 2 weeks of ordering.</p>
+        </div>
+        <div class="stat-box black-box">
+            <h3 class="stat-subheading">StockZ Verified</h3>
+            <p class="stat-text">StockZ-verified is our own designation and means that we inspect every item, every time.</p>
+        </div>
+        <div class="stat-box black-box">
+            <h3 class="stat-subheading">Our Promise</h3>
+            <p class="stat-text">We strive to earn and keep your trust. If we make a mistake, we'll put it right.</p>
+        </div>
+        <div class="stat-box black-box">
+            <h3 class="stat-subheading">The Best in the Market</h3>
+            <p class="stat-text">We guarantee you access to the best sneaker selections around the world in Cardiff.</p>
+        </div>
+    </div>
+{% endblock %}

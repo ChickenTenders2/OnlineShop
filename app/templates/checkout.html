@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="sub-heading">Checkout</h1>
+
+    <form id="payment-form" class="total-items" method="POST" action="/checkout">
+        <label for="card-number">Card Number:</label><br>
+        <input type="text" id="card-number" name="card-number" required><br>
+
+        <label for="cvv">CVV:</label><br>
+        <input type="text" id="cvv" name="cvv" required><br>
+
+        <label for="cardholder-name">Cardholder Name:</label><br>
+        <input type="text" id="cardholder-name" name="cardholder-name" required><br>
+
+        <label for="address">Address line 1:</label><br>
+        <input type="text" id="address" name="address1" required><br>
+
+        <label for="address2">Address line 2:</label><br>
+        <input type="text" id="address2" name="address2"><br>
+
+        <label for="city">Town/City:</label><br>
+        <input type="text" id="city" name="city" required><br>
+
+        <label for="postcode">Postcode:</label><br>
+        <input type="text" id="postcode" name="postcode" required><br>
+
+        <br><input type="submit" value="Submit">
+    </form>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='checkout.js') }}"></script>
+{% endblock %}

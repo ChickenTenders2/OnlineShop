@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="sub-heading">Your Shopping Basket</h1>
+
+    {% if items %}
+        <ul class="basket-items">
+        {% for item in items %}
+            <li>
+                <img src="{{ url_for('static', filename= item.sneaker.imageTag) }}" class="image" width="15%" height="15%"/><br>
+                {{ item.sneaker.name }}
+                {{ item.sneaker.price }}
+                Quantity: {{ item.quantity }}
+                <form method="POST" action="{{ url_for('delete_from_basket', sneakerID=item['sneaker'].id) }}">
+                    <input type="submit" value="Delete">
+                </form> <br>
+            </li>
+        {% endfor %}
+        </ul>
+        <p class="total-items">Total: £{{ total }}</p>
+        <form action="{{ url_for('checkout') }}" method="get">
+            <input type="submit" value="Proceed to Checkout" class="total-items">
+        </form>
+    {% else %}
+        <p class="total-items">Your shopping basket is empty.</p>
+    {% endif %}
+{% endblock %}

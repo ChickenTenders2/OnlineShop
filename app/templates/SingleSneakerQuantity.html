@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ sneaker.name }}</h1>
+    <p>Price: {{ sneaker.price }}</p>
+    <p>{{ sneaker.description }}</p>
+    <img src="{{ url_for('static', filename= sneaker.imageTag) }}" class="image" width="30%" height="30%"/>
+    <p>You have added {{ quantity }} {{ sneaker.name }} to your basket.</p>
+{% endblock %}

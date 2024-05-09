@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='sneakerDescription.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="banner"></div>
+    <h1 class="sub-heading1">Trending Sneaker Releases</h1>
+
+    <form method="GET" action="{{ url_for('home') }}" class="sort-form">
+        <select name="sort_by">
+            <option value="price_asc">Price (Low to High)</option>
+            <option value="price_desc">Price (High to Low)</option>
+        </select>
+        <input type="submit" value="Sort">
+    </form>
+
+    <ul class="product-list">
+        {% for sneaker in sneakers %}
+            <li data-id="{{ sneaker.id }}">
+                <div class="image-container">
+                    <a href="{{ url_for('singleProductPage', sneakerID=sneaker.id) }}">
+                        <img src="{{ url_for('static', filename= sneaker.imageTag) }}" class="image" style="width: 100%; max-width: 300px;"/>
+                    </a>
+                </div>
+                <div class="details">
+                    {{ sneaker.name }} <br><br> {{ sneaker.price }}
+                </div>
+                <form method="POST" action="{{ url_for('home')}}">
+                    {{ form.hidden_tag() }}
+                    {{ form.sneakerID(value= sneaker.id) }}
+                    {{ form.quantity.label }} {{ form.quantity() }}
+                    {{ form.submit() }}
+                </form><br><br><br>
+                <div class="description" style="display: none;">
+                    <a href="{{ url_for('singleProductPage', sneakerID=sneaker.id) }}">Read more</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <footer class="footer">
+        <p>©2024 StockZ. All Rights Reserved.</p>
+    </footer>
+{% endblock %}
